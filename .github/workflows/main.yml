@@ -80,7 +80,8 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
+          cd ./cicdproject/examplecicd/
+          sudo docker-compose down
           docker pull jatin177/cicdexampledockerhub:latest
           docker system prune -af
-          sudo fuser -k 3000/tcp || true
-          docker run -p 3000:3000 -d jatin177/cicdexampledockerhub:latest
+          sudo docker-compose up -d
