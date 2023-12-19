@@ -81,4 +81,6 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           docker pull jatin177/cicdexampledockerhub:latest
+          docker system prune -af
+          sudo fuser -k 3000/tcp || true
           docker run -p 3000:3000 -d jatin177/cicdexampledockerhub:latest
